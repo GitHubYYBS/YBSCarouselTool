@@ -1,0 +1,446 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		840B96EEBF3CBEE35DF9D4C9 /* libPods-YBSCarouselTool.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FE4AEB21FE2DEA78BF5F3B9 /* libPods-YBSCarouselTool.a */; };
+		9771529220C67FB900745CA6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9771529120C67FB900745CA6 /* AppDelegate.m */; };
+		9771529520C67FB900745CA6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9771529420C67FB900745CA6 /* ViewController.m */; };
+		9771529820C67FB900745CA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9771529620C67FB900745CA6 /* Main.storyboard */; };
+		9771529A20C67FBA00745CA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9771529920C67FBA00745CA6 /* Assets.xcassets */; };
+		9771529D20C67FBA00745CA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9771529B20C67FBA00745CA6 /* LaunchScreen.storyboard */; };
+		977152A020C67FBA00745CA6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9771529F20C67FBA00745CA6 /* main.m */; };
+		977152A920C6801300745CA6 /* YBSCarouselTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 977152A820C6801300745CA6 /* YBSCarouselTool.m */; };
+		977152AC20C68FE500745CA6 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 977152AB20C68FE500745CA6 /* UIView+Frame.m */; };
+		977C7A7920CBCB9B00DAF98E /* YBSCarouselTool.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 977C7A7820CBCB9B00DAF98E /* YBSCarouselTool.bundle */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2D6A25519EDBF74EADF427C9 /* Pods-YBSCarouselTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YBSCarouselTool.release.xcconfig"; path = "Pods/Target Support Files/Pods-YBSCarouselTool/Pods-YBSCarouselTool.release.xcconfig"; sourceTree = "<group>"; };
+		3FE4AEB21FE2DEA78BF5F3B9 /* libPods-YBSCarouselTool.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YBSCarouselTool.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B2D3FF999E1B4E2372ACBEC /* Pods-YBSCarouselTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YBSCarouselTool.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YBSCarouselTool/Pods-YBSCarouselTool.debug.xcconfig"; sourceTree = "<group>"; };
+		9771528D20C67FB800745CA6 /* YBSCarouselTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YBSCarouselTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9771529020C67FB800745CA6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9771529120C67FB900745CA6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9771529320C67FB900745CA6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		9771529420C67FB900745CA6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9771529720C67FB900745CA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9771529920C67FBA00745CA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9771529C20C67FBA00745CA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9771529E20C67FBA00745CA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9771529F20C67FBA00745CA6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		977152A720C6801300745CA6 /* YBSCarouselTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YBSCarouselTool.h; sourceTree = "<group>"; };
+		977152A820C6801300745CA6 /* YBSCarouselTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YBSCarouselTool.m; sourceTree = "<group>"; };
+		977152AA20C68FE500745CA6 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		977152AB20C68FE500745CA6 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		977C7A7820CBCB9B00DAF98E /* YBSCarouselTool.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = YBSCarouselTool.bundle; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9771528A20C67FB800745CA6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				840B96EEBF3CBEE35DF9D4C9 /* libPods-YBSCarouselTool.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9771528420C67FB800745CA6 = {
+			isa = PBXGroup;
+			children = (
+				9771528F20C67FB800745CA6 /* YBSCarouselTool */,
+				9771528E20C67FB800745CA6 /* Products */,
+				FDBBE3E3543D3DC0470ABE40 /* Pods */,
+				C29513D205534F6C696C0CA9 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9771528E20C67FB800745CA6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9771528D20C67FB800745CA6 /* YBSCarouselTool.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9771528F20C67FB800745CA6 /* YBSCarouselTool */ = {
+			isa = PBXGroup;
+			children = (
+				977152A620C67FEB00745CA6 /* YBSCarousel */,
+				9771529020C67FB800745CA6 /* AppDelegate.h */,
+				9771529120C67FB900745CA6 /* AppDelegate.m */,
+				9771529320C67FB900745CA6 /* ViewController.h */,
+				9771529420C67FB900745CA6 /* ViewController.m */,
+				9771529620C67FB900745CA6 /* Main.storyboard */,
+				977152AA20C68FE500745CA6 /* UIView+Frame.h */,
+				977152AB20C68FE500745CA6 /* UIView+Frame.m */,
+				9771529920C67FBA00745CA6 /* Assets.xcassets */,
+				9771529B20C67FBA00745CA6 /* LaunchScreen.storyboard */,
+				9771529E20C67FBA00745CA6 /* Info.plist */,
+				9771529F20C67FBA00745CA6 /* main.m */,
+			);
+			path = YBSCarouselTool;
+			sourceTree = "<group>";
+		};
+		977152A620C67FEB00745CA6 /* YBSCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				977C7A7820CBCB9B00DAF98E /* YBSCarouselTool.bundle */,
+				977152A720C6801300745CA6 /* YBSCarouselTool.h */,
+				977152A820C6801300745CA6 /* YBSCarouselTool.m */,
+			);
+			path = YBSCarousel;
+			sourceTree = "<group>";
+		};
+		C29513D205534F6C696C0CA9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3FE4AEB21FE2DEA78BF5F3B9 /* libPods-YBSCarouselTool.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FDBBE3E3543D3DC0470ABE40 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8B2D3FF999E1B4E2372ACBEC /* Pods-YBSCarouselTool.debug.xcconfig */,
+				2D6A25519EDBF74EADF427C9 /* Pods-YBSCarouselTool.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9771528C20C67FB800745CA6 /* YBSCarouselTool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 977152A320C67FBA00745CA6 /* Build configuration list for PBXNativeTarget "YBSCarouselTool" */;
+			buildPhases = (
+				97299B6A9BB4823280A57681 /* [CP] Check Pods Manifest.lock */,
+				9771528920C67FB800745CA6 /* Sources */,
+				9771528A20C67FB800745CA6 /* Frameworks */,
+				9771528B20C67FB800745CA6 /* Resources */,
+				07436AB2E85CDAA0932DAB7E /* [CP] Embed Pods Frameworks */,
+				65EBFAA49E33BF80C65B7708 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YBSCarouselTool;
+			productName = YBSCarouselTool;
+			productReference = 9771528D20C67FB800745CA6 /* YBSCarouselTool.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9771528520C67FB800745CA6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = YBS;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = "严兵胜";
+				TargetAttributes = {
+					9771528C20C67FB800745CA6 = {
+						CreatedOnToolsVersion = 9.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 9771528820C67FB800745CA6 /* Build configuration list for PBXProject "YBSCarouselTool" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9771528420C67FB800745CA6;
+			productRefGroup = 9771528E20C67FB800745CA6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9771528C20C67FB800745CA6 /* YBSCarouselTool */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9771528B20C67FB800745CA6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				977C7A7920CBCB9B00DAF98E /* YBSCarouselTool.bundle in Resources */,
+				9771529D20C67FBA00745CA6 /* LaunchScreen.storyboard in Resources */,
+				9771529A20C67FBA00745CA6 /* Assets.xcassets in Resources */,
+				9771529820C67FB900745CA6 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		07436AB2E85CDAA0932DAB7E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YBSCarouselTool/Pods-YBSCarouselTool-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		65EBFAA49E33BF80C65B7708 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YBSCarouselTool/Pods-YBSCarouselTool-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		97299B6A9BB4823280A57681 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9771528920C67FB800745CA6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9771529520C67FB900745CA6 /* ViewController.m in Sources */,
+				977152A020C67FBA00745CA6 /* main.m in Sources */,
+				977152A920C6801300745CA6 /* YBSCarouselTool.m in Sources */,
+				977152AC20C68FE500745CA6 /* UIView+Frame.m in Sources */,
+				9771529220C67FB900745CA6 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9771529620C67FB900745CA6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9771529720C67FB900745CA6 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9771529B20C67FBA00745CA6 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9771529C20C67FBA00745CA6 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		977152A120C67FBA00745CA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		977152A220C67FBA00745CA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		977152A420C67FBA00745CA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B2D3FF999E1B4E2372ACBEC /* Pods-YBSCarouselTool.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 5PL7BMR5SN;
+				INFOPLIST_FILE = YBSCarouselTool/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ybs..YBSCarouselTool;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0d2789a2-c810-4cd1-80df-8cd1c65d5485";
+				PROVISIONING_PROFILE_SPECIFIER = "czq's mac_development_profile";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		977152A520C67FBA00745CA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D6A25519EDBF74EADF427C9 /* Pods-YBSCarouselTool.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 5PL7BMR5SN;
+				INFOPLIST_FILE = YBSCarouselTool/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ybs..YBSCarouselTool;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0d2789a2-c810-4cd1-80df-8cd1c65d5485";
+				PROVISIONING_PROFILE_SPECIFIER = "czq's mac_development_profile";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9771528820C67FB800745CA6 /* Build configuration list for PBXProject "YBSCarouselTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				977152A120C67FBA00745CA6 /* Debug */,
+				977152A220C67FBA00745CA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		977152A320C67FBA00745CA6 /* Build configuration list for PBXNativeTarget "YBSCarouselTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				977152A420C67FBA00745CA6 /* Debug */,
+				977152A520C67FBA00745CA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9771528520C67FB800745CA6 /* Project object */;
+}
