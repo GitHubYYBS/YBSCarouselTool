@@ -353,9 +353,10 @@ static NSInteger YBSItemCount = 30;
 //只要view有滚动(不管是拖、拉、放大、缩小  等导致) 都会执行此函数
 - (void)scrollViewDidScroll:(UIScrollView*)scrollView{
     
-    // 只有在不可以无限滚动 及 需要 补位的情况下 执行
-    if (self.isybs_neetInfinitiScrollEnabledBool || !self.isybs_placeholderViewBool) return;
+    // 只有在 非无限滚动 且 需要补位时 才执行下面的一大推
+    if (!(!self.isybs_neetInfinitiScrollEnabledBool && self.isybs_placeholderViewBool)) return;
     
+
     CGFloat contentOffsetX = scrollView.contentOffset.x + self.collectionView.contentInset.left;
     
     NSLog(@"只要有滚动scrollViewDidScroll___contentOffsetX = %f",contentOffsetX);
@@ -461,11 +462,16 @@ static NSInteger YBSItemCount = 30;
     [self ybs_scrollToItem];
 }
 
+// 是否需要无线滚动
 - (void)setYbs_neetInfinitiScrollEnabledBool:(BOOL)ybs_neetInfinitiScrollEnabledBool{
     
     _ybs_neetInfinitiScrollEnabledBool = ybs_neetInfinitiScrollEnabledBool;
     
-    if (ybs_neetInfinitiScrollEnabledBool) self.ybs_marketExpansionBool = true;
+    if (ybs_neetInfinitiScrollEnabledBool){
+        
+        self.ybs_marketExpansionBool = true; // 强制 扩容
+        self.ybs_placeholderViewBool = false; // 强制将 毛玻璃补位效果关闭
+    }
 }
 
 // 配置是否需要扩容
@@ -483,6 +489,9 @@ static NSInteger YBSItemCount = 30;
 - (void)setYbs_neetAutomaticCarouselBool:(BOOL)ybs_neetAutomaticCarouselBool{
     
     _ybs_neetAutomaticCarouselBool = ybs_neetAutomaticCarouselBool;
+    
+    // 强制无限滚动
+    self.ybs_neetInfinitiScrollEnabledBool = ybs_neetAutomaticCarouselBool;
     
     // 之前有创建
     if (ybs_neetAutomaticCarouselBool && self.ybs_timer) return;
@@ -506,10 +515,17 @@ static NSInteger YBSItemCount = 30;
     self.ybs_neetAutomaticCarouselBool = (ybs_timeIntervalInteger > 0)? true : false;
 }
 
+// 配置圆角
 - (void)setYbs_circularFloat:(CGFloat)ybs_circularFloat{
     
     _ybs_circularFloat = ybs_circularFloat;
-    if (self.ybs_placeholderViewBool) self.ybs_placeholderView.layer.cornerRadius = ybs_circularFloat;
+    if (self.isybs_placeholderViewBool) self.ybs_placeholderView.layer.cornerRadius = ybs_circularFloat;
+}
+
+// 是否需要占位 只有在 非无限滚动 且 非定时轮播 下 起作用 
+- (BOOL)isYbs_placeholderViewBool{
+    NSLog(@"isybs_neetInfinitiScrollEnabledBool = %@___isybs_neetAutomaticCarouselBool = %@",self.isybs_neetInfinitiScrollEnabledBool? @"yes" : @"no", self.isybs_neetAutomaticCarouselBool? @"YES" : @"NO");
+    return (self.ybs_neetInfinitiScrollEnabledBool || self.ybs_neetAutomaticCarouselBool)? false : _ybs_placeholderViewBool;
 }
 
 
