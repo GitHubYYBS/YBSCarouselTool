@@ -154,6 +154,8 @@
 @property (nonatomic, weak) UIView *ybs_bagView;
 /// <# 请输入注释 #>
 @property (nonatomic, weak) UIImageView *imageView;
+/// 图片圆角大小 默认为0 无圆角
+@property (nonatomic, assign) CGFloat ybs_cellImageCircularFloat;
 
 @end
 
@@ -176,12 +178,18 @@
     if (!_imageView) {
         UIImageView *imageView = [UIImageView new];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.layer.cornerRadius = self.ybs_cellImageCircularFloat;
         imageView.clipsToBounds = true;
         [self.ybs_bagView addSubview:_imageView = imageView];
     }
     return _imageView;
 }
 
+- (void)setYbs_cellImageCircularFloat:(CGFloat)ybs_cellImageCircularFloat{
+    
+    _ybs_cellImageCircularFloat = ybs_cellImageCircularFloat;
+    self.imageView.layer.cornerRadius = ybs_cellImageCircularFloat;
+}
 
 
 
@@ -189,7 +197,7 @@
     
     if (self = [super initWithFrame:frame]) {
         
-        self.ybs_bagView.backgroundColor = [UIColor colorWithRed:arc4random_uniform(256) / 255.0f green:arc4random_uniform(256) / 255.0f blue:arc4random_uniform(256) / 255.0f alpha:1];
+        self.ybs_bagView.backgroundColor = [UIColor whiteColor];// [UIColor colorWithRed:arc4random_uniform(256) / 255.0f green:arc4random_uniform(256) / 255.0f blue:arc4random_uniform(256) / 255.0f alpha:1];
         
         [self.ybs_bagView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(0);
@@ -228,6 +236,10 @@
 @property (nonatomic, weak) UIView *ybs_placeholderView;
 /// <# 请输入注释 #>
 @property (nonatomic, weak) UIImageView *ybs_placeholderViewImageView;
+/// 轮播定时器
+@property(nonatomic, strong) NSTimer *ybs_timer;
+/// 当前indexPath
+@property (nonatomic, strong) NSIndexPath *ybs_curIndexPath;
 
 
 @end
@@ -246,10 +258,14 @@ static NSInteger YBSItemCount = 30;
         
         [self setUpUI];
         
+        // 有些都是有顺序关系的 请不要随意改动这里的赋值顺序
         self.ybs_smallScaleFloat = 0.7;
         self.ybs_neetInfinitiScrollEnabledBool = true;
         self.ybs_marketExpansionBool = true;
         self.ybs_clickMoveToCenterBool = true;
+        self.ybs_timeIntervalInteger = 4;
+        self.ybs_neetAutomaticCarouselBool = true;
+        
     }
     
     return self;
@@ -293,6 +309,7 @@ static NSInteger YBSItemCount = 30;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     YBSCarouselToolCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:YBSCarouselToolCollectiongCellId forIndexPath:indexPath];
+    cell.ybs_cellImageCircularFloat = self.ybs_circularFloat;
     
     // 设置轮播图片
     if (self.imageArray.count != 0) {
@@ -341,6 +358,8 @@ static NSInteger YBSItemCount = 30;
     
     CGFloat contentOffsetX = scrollView.contentOffset.x + self.collectionView.contentInset.left;
     
+    NSLog(@"只要有滚动scrollViewDidScroll___contentOffsetX = %f",contentOffsetX);
+    
     
     // 所有的item 的最大滚动距离 (最后一个 cell 会留在屏幕正中间 所以 -1  而最右侧的滚动间距 是通过额外滚动距离来实现的 最后一个cell 实际只有一个列间距)
     CGFloat allCellW = (self.imageArray.count * YBSItemCount - 1) * self.ybs_flowLauout.itemSize.width + (self.imageArray.count * YBSItemCount - 1) * self.ybs_cellDistanceFlost;
@@ -376,42 +395,36 @@ static NSInteger YBSItemCount = 30;
 }
 
 
-/**
- *  scrollView滚动完毕的时候调用(速度为0)
- */
+// scrollView滚动完毕的时候调用(速度为0) (如果是通过 setContentOffset 来调整的位置 不会来这里)
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    [self ybs_resetPosition];
+}
+
+// 将要开始拖拽，手指已经放在view上并准备拖动的那一刻（开始滑动，滑动一小段距离，只要手指不松开，只算一次滑动只执行一次）
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    // 停止定时器
+    [self stopTimer];
+}
+
+// 已经结束拖拽，手指刚离开view的那一刻(。一次有效滑动，只执行一次)
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    // 开启定时器 (在允许定时轮播的情况下)
+    if (self.ybs_neetAutomaticCarouselBool) [self startTimer];
+}
+
+// 当滚动视图动画完成后，调用该方法，如果没有动画，那么该方法将不被调用 (手指拖拽造成的滚动 不会来这里) (setContentOffset 来调整的位置 会来这里)
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
     
-    NSIndexPath *indexPath;
-    
-    //判断滑动到第几个
-    if (scrollView.contentOffset.x > 0) {
-        
-        CGPoint pInView = [self convertPoint:self.collectionView.center toView:self.collectionView];
-        // 获取这一点的indexPath
-        NSIndexPath *indexPathNow = [self.collectionView indexPathForItemAtPoint:pInView];
-        indexPath = [NSIndexPath indexPathForItem:indexPathNow.row%self.imageArray.count+YBSItemCount * 0.5 *self.imageArray.count inSection:0];
-    }
-    else{
-        
-        indexPath = [NSIndexPath indexPathForItem:YBSItemCount * 0.5 *self.imageArray.count inSection:0];
-        
-    }
-    
-    // 数据回传
-    if ([self.delegate respondsToSelector:@selector(ybs_carouselTool:currentAtIndex:)]) {
-        [self.delegate ybs_carouselTool:self currentAtIndex:indexPath.item % self.imageArray.count];
-    }
-    
-    
-    // 中间位置调整
-    if (self.ybs_neetInfinitiScrollEnabledBool) {
-        [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
-    }
-    
+    // 完成一次自动轮播之后 跳转cell居中显示 
+    [self ybs_resetPosition];
 }
 
 
-#pragma mark - 其他
+
+
+#pragma mark - 参数赋值
 
 // 配置cell 间距
 - (void)setYbs_cellDistanceFlost:(CGFloat)ybs_cellDistanceFlost{
@@ -466,7 +479,42 @@ static NSInteger YBSItemCount = 30;
     [self ybs_scrollToItem];
 }
 
+// 是否会自动轮播
+- (void)setYbs_neetAutomaticCarouselBool:(BOOL)ybs_neetAutomaticCarouselBool{
+    
+    _ybs_neetAutomaticCarouselBool = ybs_neetAutomaticCarouselBool;
+    
+    // 之前有创建
+    if (ybs_neetAutomaticCarouselBool && self.ybs_timer) return;
+    
+    // 之前没有创建
+    if (ybs_neetAutomaticCarouselBool && !self.ybs_timer) {
+        self.ybs_timer = [NSTimer scheduledTimerWithTimeInterval:self.ybs_timeIntervalInteger target:self selector:@selector(ybs_nextPage) userInfo:nil repeats:YES];
+        [[NSRunLoop mainRunLoop] addTimer:self.ybs_timer forMode:NSRunLoopCommonModes];
+    }
+    
+    // 之前有创建 但是 这次要销毁
+    if (!ybs_neetAutomaticCarouselBool && self.ybs_timer) {
+        [self.ybs_timer invalidate];
+        self.ybs_timer = nil;
+    }
+}
 
+// 定时轮播 时间间距
+- (void)setYbs_timeIntervalInteger:(NSInteger)ybs_timeIntervalInteger{
+    _ybs_timeIntervalInteger = ybs_timeIntervalInteger;
+    self.ybs_neetAutomaticCarouselBool = (ybs_timeIntervalInteger > 0)? true : false;
+}
+
+- (void)setYbs_circularFloat:(CGFloat)ybs_circularFloat{
+    
+    _ybs_circularFloat = ybs_circularFloat;
+    if (self.ybs_placeholderViewBool) self.ybs_placeholderView.layer.cornerRadius = ybs_circularFloat;
+}
+
+
+
+#pragma mark - 其他
 
 //
 - (void)setImageArray:(NSMutableArray *)imageArray{
@@ -489,7 +537,6 @@ static NSInteger YBSItemCount = 30;
     
     // (YBSItemCount * imageArray.count) / 2 + (self.ybs_firstSelectedInteger) -> 首先我们定位到 最中间 由于collectionView 是从第0为开始计数 所以我们不需要向后偏移一位
     [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.ybs_marketExpansionBool? (YBSItemCount * _imageArray.count) / 2 + (self.ybs_firstSelectedInteger) : self.ybs_firstSelectedInteger inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
-    
     // 由于 如果一开始的偏移量为 0 scrollViewDidScroll 的代理不会被调用 那我们就主动调用一次 来保证 需要补位时的UI 
     if (self.ybs_firstSelectedInteger == 0)  [self scrollViewDidScroll:self.collectionView];
    
@@ -512,6 +559,65 @@ static NSInteger YBSItemCount = 30;
     [self invalidateIntrinsicContentSize];
 }
 
+// 下一张 -自动轮播
+- (void)ybs_nextPage{
+    
+    CGFloat contentOffSetX = self.collectionView.contentOffset.x;
+//    NSLog(@"当前偏移量__self.collectionView.contentOffset.x = %f",contentOffSetX);
+    contentOffSetX += self.ybs_flowLauout.itemSize.width; // 向右偏移 item的宽度
+    contentOffSetX += self.ybs_cellDistanceFlost; // 还有左边的cell 间距
+//    NSLog(@"下一个偏移量__self.collectionView.contentOffset.x = %f",contentOffSetX);
+    [self.collectionView setContentOffset:CGPointMake(contentOffSetX, self.collectionView.contentOffset.y) animated:YES];
+
+}
+
+// 停止定时器
+- (void)stopTimer{
+    
+    if (self.ybs_timer) {
+        [self.ybs_timer invalidate];
+        self.ybs_timer = nil;
+    }
+    
+}
+
+// 开启定时器
+- (void)startTimer{
+    self.ybs_neetAutomaticCarouselBool = true;
+}
+
+
+// 跳转位置居中显示
+- (void)ybs_resetPosition{
+    
+    NSIndexPath *indexPath;
+    //判断滑动到第几个
+    if (self.collectionView.contentOffset.x > 0) {
+        
+        CGPoint pInView = [self convertPoint:self.collectionView.center toView:self.collectionView];
+        // 获取这一点的indexPath
+        NSIndexPath *indexPathNow = [self.collectionView indexPathForItemAtPoint:pInView];
+        indexPath = [NSIndexPath indexPathForItem:indexPathNow.row%self.imageArray.count+YBSItemCount * 0.5 *self.imageArray.count inSection:0];
+    }
+    else{
+        indexPath = [NSIndexPath indexPathForItem:YBSItemCount * 0.5 *self.imageArray.count inSection:0];
+    }
+    
+    
+    // 数据回传
+    if ([self.delegate respondsToSelector:@selector(ybs_carouselTool:currentAtIndex:)]) {
+        [self.delegate ybs_carouselTool:self currentAtIndex:indexPath.item % self.imageArray.count];
+    }
+    
+    
+    // 中间位置调整 (可以无限轮播 及 定时轮播 都会居中)
+    if (self.ybs_neetInfinitiScrollEnabledBool || self.ybs_neetAutomaticCarouselBool) {
+        [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+    }
+}
+
+
+
 
 - (UIView *)ybs_placeholderView{
     
@@ -520,6 +626,7 @@ static NSInteger YBSItemCount = 30;
         ybs_placeholderView.size = CGSizeMake(self.ybs_flowLauout.itemSize.width , self.ybs_flowLauout.itemSize.height);
         ybs_placeholderView.centerY = self.height * 0.5;
         ybs_placeholderView.userInteractionEnabled = false;
+        ybs_placeholderView.clipsToBounds = true;
         ybs_placeholderView.backgroundColor = [UIColor redColor];
         [self addSubview:_ybs_placeholderView = ybs_placeholderView];
         
@@ -537,7 +644,7 @@ static NSInteger YBSItemCount = 30;
         
         // 毛玻璃效果
         UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
-        effectView.alpha = 0.7;
+        effectView.alpha = 0.5;
         [imageView addSubview:effectView];
 
         [effectView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -549,6 +656,13 @@ static NSInteger YBSItemCount = 30;
     }
     
     return _ybs_placeholderView;
+}
+
+- (void)dealloc{
+    if (self.ybs_timer) {
+        [self.ybs_timer invalidate];
+        self.ybs_timer = nil;
+    }
 }
 
 

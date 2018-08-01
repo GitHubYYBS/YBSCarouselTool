@@ -15,7 +15,7 @@
     4.item 的宽度 是由 ybs_cellDistanceFlost 及 ybs_leftRightDistanceFlost 共同决定的
     5.我们外界可以通过 配置 ybs_firstSelectedInteger 来指定选中某一个 其默认值我们会自动选中最中间的那个
     6.支持是否可以无限滚动 (ybs_neetInfinitiScrollEnabledBool) 当该值配置为YES 时 补位功能将失效 (因为此时已不再需要补位)
-    7.支持是否扩容(及 外界只传来了 3个 我们会自动扩容 3 * 20个 可以通过 ybs_marketExpansionBool 来配置是否扩容 ) 这样做的目的是 如果用户向左 或者向右 滑动是滑不到头的(前提是 开启了ybs_neetInfinitiScrollEnabledBool)
+    7.支持是否扩容(及 外界只传来了 3个 我们会自动扩容 3 * 30个 可以通过 ybs_marketExpansionBool 来配置是否扩容 ) 这样做的目的是 如果用户向左 或者向右 滑动是滑不到头的(前提是 开启了ybs_neetInfinitiScrollEnabledBool)
     8.
  
  */
@@ -38,6 +38,8 @@
 
 /** 需要显示的图片数据(要求里面存放UIImage\NSURL对象) 支持在中途刷新数据 需要刷新时只需要给该数组重新赋值就好了 */
 @property(nonatomic,strong)NSMutableArray *imageArray;
+/// 图片圆角大小 默认为0 无圆角
+@property (nonatomic, assign) CGFloat ybs_circularFloat;
 /** 用来监听框架内部事件的代理 */
 @property (nonatomic, weak) id delegate;
 /// cell 之间的间距 ->默认为 0
@@ -56,5 +58,11 @@
 @property (nonatomic, assign,getter=isybs_marketExpansionBool) BOOL ybs_marketExpansionBool;
 /// 是否开启点击居中 默认YES
 @property (nonatomic, assign,getter=isybs_clickMoveToCenterBool) BOOL ybs_clickMoveToCenterBool;
+/// 是否需要自动轮播 ->默认yes 会自动轮播
+@property (nonatomic, assign,getter=isybs_neetAutomaticCarouselBool) BOOL ybs_neetAutomaticCarouselBool;
+/// 定时轮播时间间隔 (单位: 秒 默认 4秒) 如果该值 > 0 ybs_neetAutomaticCarouselBool 会被强制开启
+@property (nonatomic, assign) NSInteger ybs_timeIntervalInteger;
+
+
 
 @end
