@@ -34,7 +34,7 @@
     carouseTool.ybs_firstSelectedInteger = 0;
     carouseTool.ybs_marketExpansionBool = false;
     carouseTool.ybs_placeholderViewBool = true;
-    carouseTool.ybs_neetAutomaticCarouselBool = false;
+    carouseTool.ybs_neetAutomaticCarouselBool = true;
     carouseTool.ybs_circularFloat = 5;
     carouseTool.imageArray = [NSMutableArray arrayWithArray:@[
                                                               [NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1528693868757&di=0076decdc22adbd8c0fee6f2d61d55da&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3Da47f71c2ac86c9171c0e5a79a04515a3%2F80cb39dbb6fd5266e1a3a92ea018972bd407367b.jpg"],

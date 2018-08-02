@@ -291,7 +291,7 @@ static NSInteger YBSItemCount = 30;
 //    collectionView.pagingEnabled = true;
     collectionView.showsHorizontalScrollIndicator = NO;
     collectionView.showsVerticalScrollIndicator = NO;
-//    collectionView.decelerationRate = UIScrollViewDecelerationRateFast; // 速率
+    collectionView.decelerationRate = UIScrollViewDecelerationRateNormal; // 速率
     
     // 注册cell -- 不暴露给外界
     [collectionView registerClass:[YBSCarouselToolCollectionCell class] forCellWithReuseIdentifier:YBSCarouselToolCollectiongCellId];
@@ -409,13 +409,13 @@ static NSInteger YBSItemCount = 30;
 }
 
 // 已经结束拖拽，手指刚离开view的那一刻(。一次有效滑动，只执行一次)
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    
     // 开启定时器 (在允许定时轮播的情况下)
-    if (self.ybs_neetAutomaticCarouselBool) [self startTimer];
+    if (self.ybs_neetAutomaticCarouselBool && self.ybs_timer == nil) [self startTimer];
 }
 
-// 当滚动视图动画完成后，调用该方法，如果没有动画，那么该方法将不被调用 (手指拖拽造成的滚动 不会来这里) (setContentOffset 来调整的位置 会来这里)
+// 当滚动视图动画完成后，调用该方法，如果没有动画，那么该方法将不被调用 (手指拖拽造成的滚动 不会来这里) (setContentOffset 来调整的位置  并且动画为YES 会来这里)
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
     
     // 完成一次自动轮播之后 跳转cell居中显示 
@@ -522,9 +522,9 @@ static NSInteger YBSItemCount = 30;
     if (self.isybs_placeholderViewBool) self.ybs_placeholderView.layer.cornerRadius = ybs_circularFloat;
 }
 
-// 是否需要占位 只有在 非无限滚动 且 非定时轮播 下 起作用 
+// 是否需要占位 只有在 非无限滚动 且 非定时轮播 下 起作用
 - (BOOL)isYbs_placeholderViewBool{
-    NSLog(@"isybs_neetInfinitiScrollEnabledBool = %@___isybs_neetAutomaticCarouselBool = %@",self.isybs_neetInfinitiScrollEnabledBool? @"yes" : @"no", self.isybs_neetAutomaticCarouselBool? @"YES" : @"NO");
+//    NSLog(@"isybs_neetInfinitiScrollEnabledBool = %@___isybs_neetAutomaticCarouselBool = %@",self.isybs_neetInfinitiScrollEnabledBool? @"yes" : @"no", self.isybs_neetAutomaticCarouselBool? @"YES" : @"NO");
     return (self.ybs_neetInfinitiScrollEnabledBool || self.ybs_neetAutomaticCarouselBool)? false : _ybs_placeholderViewBool;
 }
 
@@ -599,7 +599,11 @@ static NSInteger YBSItemCount = 30;
 
 // 开启定时器
 - (void)startTimer{
-    self.ybs_neetAutomaticCarouselBool = true;
+    
+    if (self.isybs_neetAutomaticCarouselBool && !self.ybs_timer) {
+        self.ybs_timer = [NSTimer scheduledTimerWithTimeInterval:self.ybs_timeIntervalInteger target:self selector:@selector(ybs_nextPage) userInfo:nil repeats:YES];
+        [[NSRunLoop mainRunLoop] addTimer:self.ybs_timer forMode:NSRunLoopCommonModes];
+    }
 }
 
 
