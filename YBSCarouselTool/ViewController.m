@@ -21,11 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    
-    
-    
-    
+    // 创建 并按需求配置
     YBSCarouselTool *carouseTool = [[YBSCarouselTool alloc] initWithFrame:CGRectMake(0, 150, self.view.width, 160)];
     carouseTool.ybs_cellDistanceFlost = 15;
     carouseTool.ybs_leftRightDistanceFlost = 20;
