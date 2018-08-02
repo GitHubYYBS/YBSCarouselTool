@@ -58,6 +58,8 @@
 @property (nonatomic, assign,getter=isybs_marketExpansionBool) BOOL ybs_marketExpansionBool;
 /// 是否开启点击居中 默认YES
 @property (nonatomic, assign,getter=isybs_clickMoveToCenterBool) BOOL ybs_clickMoveToCenterBool;
+/// 是否开启每次切换都回调 默认NO 不会在每次切换时回调只在点击时 回调 
+@property (nonatomic, assign,getter=isybs_callBackAutomaticBool) BOOL ybs_callBackAutomaticBool;
 /// 是否需要自动轮播 ->默认yes 会自动轮播
 @property (nonatomic, assign,getter=isybs_neetAutomaticCarouselBool) BOOL ybs_neetAutomaticCarouselBool;
 /// 定时轮播时间间隔 (单位: 秒 默认 4秒) 如果该值 > 0 ybs_neetAutomaticCarouselBool 会被强制开启

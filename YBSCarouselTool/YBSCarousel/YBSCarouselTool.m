@@ -558,7 +558,7 @@ static NSInteger YBSItemCount = 30;
    
     
     // 回调当前选中页
-    if ([self.delegate respondsToSelector:@selector(ybs_carouselTool:currentAtIndex:)]) {
+    if ([self.delegate respondsToSelector:@selector(ybs_carouselTool:currentAtIndex:)] && self.isybs_callBackAutomaticBool) {
         [self.delegate ybs_carouselTool:self currentAtIndex:(self.ybs_marketExpansionBool? ((YBSItemCount * _imageArray.count) / 2 + (self.ybs_firstSelectedInteger)) : self.ybs_firstSelectedInteger) % _imageArray.count];
     }
 }
@@ -625,7 +625,7 @@ static NSInteger YBSItemCount = 30;
     
     
     // 数据回传
-    if ([self.delegate respondsToSelector:@selector(ybs_carouselTool:currentAtIndex:)]) {
+    if ([self.delegate respondsToSelector:@selector(ybs_carouselTool:currentAtIndex:)] && self.isybs_callBackAutomaticBool) {
         [self.delegate ybs_carouselTool:self currentAtIndex:indexPath.item % self.imageArray.count];
     }
     
